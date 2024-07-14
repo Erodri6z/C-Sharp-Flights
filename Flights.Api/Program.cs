@@ -34,9 +34,11 @@ List<FlightDto> flights = [
   )
 ];
 
-
+// GET flights
 app.MapGet("flights", () => flights);
 
-app.MapGet("/", () => "Hello World!");
+// GET flights by id
+app.MapGet("flights/{id}", (int id) => flights.Find(flight => flight.Id == id));
+
 
 app.Run();

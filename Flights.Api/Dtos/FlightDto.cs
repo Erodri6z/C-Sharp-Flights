@@ -7,4 +7,4 @@ public record class FlightDto
   string Airport,
   int FlightNumber,
   DateOnly Departs
-)
+);
