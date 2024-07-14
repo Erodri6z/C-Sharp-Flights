@@ -32,9 +32,10 @@ List<FlightDto> flights = [
     4233,
     new DateOnly(2023, 3, 8)
   )
-]
+];
 
 
+app.MapGet("flights", () => flights);
 
 app.MapGet("/", () => "Hello World!");
 
