@@ -3,6 +3,8 @@ using Flights.Api.Dtos;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
+const string GetFlightEndPointName = "GetFlight";
+
 List<FlightDto> flights = [
   new ( 
     1,
@@ -39,7 +41,7 @@ app.MapGet("flights", () => flights);
 
 // GET flights by id
 app.MapGet("flights/{id}", (int id) => flights.Find(flight => flight.Id == id))
-.WithName("GetFlight");
+.WithName(GetFlightEndPointName);
 
 app.MapPost("flights", (CreateFlightDto newFlight) => {
   FlightDto flight = new (
@@ -50,7 +52,7 @@ app.MapPost("flights", (CreateFlightDto newFlight) => {
     newFlight.Departs);
   flights.Add(flight);
 
-  return Results.CreatedAtRoute("GetFlight", new { id = flight.Id }, flight);
+  return Results.CreatedAtRoute(GetFlightEndPointName, new { id = flight.Id }, flight);
 });
 
 
