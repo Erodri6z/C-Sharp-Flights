@@ -44,6 +44,7 @@ app.MapGet("flights", () => flights);
 app.MapGet("flights/{id}", (int id) => flights.Find(flight => flight.Id == id))
 .WithName(GetFlightEndPointName);
 
+// POST flights
 app.MapPost("flights", (CreateFlightDto newFlight) => {
   FlightDto flight = new (
     flights.Count + 1,
@@ -58,7 +59,7 @@ app.MapPost("flights", (CreateFlightDto newFlight) => {
   return Results.CreatedAtRoute(GetFlightEndPointName, new { id = flight.Id }, flight);
 });
 
-
+// PUT and Update flights
 app.MapPut("flights/{id}", ( int id, UpdateFlightDto updatedFlight) => 
 {
   var index = flights.FindIndex(flight => flight.Id == id);
@@ -72,6 +73,15 @@ app.MapPut("flights/{id}", ( int id, UpdateFlightDto updatedFlight) =>
   );
   return Results.NoContent();
 });
+
+// Delete flights
+app.MapDelete("flights/id", (int id) =>
+{
+  flights.RemoveAll(flight => flight.Id == id);
+
+  return Results.NoContent();
+});
+
 
 
 app.Run();

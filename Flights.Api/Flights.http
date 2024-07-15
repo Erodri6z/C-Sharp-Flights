@@ -13,3 +13,14 @@ Content-Type: application/json
   "flightNumber": 4032,
   "departs": "2023-02-04"
 }
+
+###
+PUT http://localhost:5271/flights/4
+Content-Type: application/json
+
+{
+  "airline": "Southwest",
+  "airport": "NYC",
+  "flightNumber": 4052,
+  "departs": "2023-02-04"
+}
