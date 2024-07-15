@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Flights.Api.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -57,6 +58,20 @@ app.MapPost("flights", (CreateFlightDto newFlight) => {
   return Results.CreatedAtRoute(GetFlightEndPointName, new { id = flight.Id }, flight);
 });
 
+
+app.MapPut("flights/{id}", ( int id, UpdateFlightDto updatedFlight) => 
+{
+  var index = flights.FindIndex(flight => flight.Id == id);
+
+  flights[index] = new FlightDto(
+    id,
+    updatedFlight.Airline,
+    updatedFlight.Airport,
+    updatedFlight.FlightNumber,
+    updatedFlight.Departs
+  );
+  return Results.NoContent();
+});
 
 
 app.Run();
