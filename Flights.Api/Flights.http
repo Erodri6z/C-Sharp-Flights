@@ -3,4 +3,13 @@ GET http://localhost:5271/flights
 ###
 GET http://localhost:5271/flights/2
 
+###
+POST http://localhost:5271/flights
+Content-Type: application/json 
 
+{
+  "airline": "Southwest",
+  "airport": "NYC",
+  "flightNumber": 4032,
+  "departs": "2023-02-04"
+}

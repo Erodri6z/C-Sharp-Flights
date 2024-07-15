@@ -49,7 +49,9 @@ app.MapPost("flights", (CreateFlightDto newFlight) => {
     newFlight.Airline,
     newFlight.Airport,
     newFlight.FlightNumber,
-    newFlight.Departs);
+    newFlight.Departs
+  );
+  
   flights.Add(flight);
 
   return Results.CreatedAtRoute(GetFlightEndPointName, new { id = flight.Id }, flight);
