@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Flights.Api.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
