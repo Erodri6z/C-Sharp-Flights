@@ -68,6 +68,11 @@ app.MapPut("flights/{id}", ( int id, UpdateFlightDto updatedFlight) =>
 {
   var index = flights.FindIndex(flight => flight.Id == id);
 
+  if (index == -1)
+  {
+    return Results.NotFound();
+  }
+
   flights[index] = new FlightDto(
     id,
     updatedFlight.Airline,
