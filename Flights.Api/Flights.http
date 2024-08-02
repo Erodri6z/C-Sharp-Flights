@@ -24,3 +24,7 @@ Content-Type: application/json
   "flightNumber": 4052,
   "departs": "2023-02-04"
 }
+
+###
+DELETE http://localhost:5271/flights/2
+

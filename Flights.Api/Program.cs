@@ -40,7 +40,12 @@ List<FlightDto> flights = [
 app.MapGet("flights", () => flights);
 
 // GET flights by id
-app.MapGet("flights/{id}", (int id) => flights.Find(flight => flight.Id == id))
+app.MapGet("flights/{id}", (int id) => 
+{
+  FlightDto? flight = flights.Find(flight => flight.Id == id);
+
+  return flight is null ? Results.NotFound() : Results.Ok(flight) ; 
+})
 .WithName(GetFlightEndPointName);
 
 // POST flights
@@ -67,7 +72,7 @@ app.MapPut("flights/{id}", ( int id, UpdateFlightDto updatedFlight) =>
     id,
     updatedFlight.Airline,
     updatedFlight.Airport,
-    updatedFlight.FlightNumber,
+    updatedFlight.FlightNumber, 
     updatedFlight.Departs
   );
   return Results.NoContent();
