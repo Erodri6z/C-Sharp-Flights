@@ -79,7 +79,7 @@ app.MapPut("flights/{id}", ( int id, UpdateFlightDto updatedFlight) =>
 });
 
 // Delete flights
-app.MapDelete("flights/id", (int id) =>
+app.MapDelete("flights/{id}", (int id) =>
 {
   flights.RemoveAll(flight => flight.Id == id);
 
